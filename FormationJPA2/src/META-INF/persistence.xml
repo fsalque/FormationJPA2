@@ -1,5 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+<persistence version="2.1"
+	xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
 	<persistence-unit name="FormationJPA2">
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<class>com.m2i.formation.media.entities.Media</class>
+		<class>com.m2i.formation.media.entities.Author</class>
+		<class>com.m2i.formation.media.entities.Card</class>
+		<class>com.m2i.formation.media.entities.Page</class>
+		<class>com.m2i.formation.media.entities.Publisher</class>
+		<properties>
+
+			<!-- En cas d'erreur sur les entities cliquer-droit sur persistence.xml 
+				> JPA Tools > Synchronize class list -->
+
+			<!-- Classes persistantes -->
+			<property name="hibernate.archive.autodetection" value="class, hbm" />
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLInnoDBDialect" />
+			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.format_sql" value="false" />
+
+			<!-- connexion JDBC -->
+			<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
+			<property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/test" />
+			<property name="hibernate.connection.username" value="root" />
+			<property name="hibernate.connection.password" value="root" />
+
+			<!-- these are C3P0 properties -->
+			<property name="acquireIncrement" value="2" />
+			<property name="minPoolSize" value="2" />
+			<property name="maxPoolSize" value="10" />
+			<property name="maxIdleTime" value="300" />
+
+		</properties>
 	</persistence-unit>
 </persistence>
