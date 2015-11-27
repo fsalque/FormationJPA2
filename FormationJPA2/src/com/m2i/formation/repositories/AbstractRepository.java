@@ -10,7 +10,7 @@ import com.m2i.formation.media.entities.IEntity;
 
 public abstract class AbstractRepository<T extends IEntity> implements IRepository<T>, IUoW {
 
-	private EntityManager em;
+	private EntityManager entityManager;
 	
 	private Class<T> entityClass;
 	
@@ -22,12 +22,12 @@ public abstract class AbstractRepository<T extends IEntity> implements IReposito
 	
 	@Override
 	public EntityManager getEntityManager() {
-		return this.em;
+		return this.entityManager;
 	}
 
 	@Override
 	public void setEntityManager(EntityManager em) {
-		this.em = em;
+		this.entityManager = em;
 
 	}
 

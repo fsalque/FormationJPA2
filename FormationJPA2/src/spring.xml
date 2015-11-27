@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/context 
+http://www.springframework.org/schema/context/spring-context.xsd
+http://www.springframework.org/schema/tx
+http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+
+
+	<bean id="media" class="com.m2i.formation.media.entities.Media"
+		scope="prototype">	
+	</bean>
+	<bean id="mediaRepository" class="com.m2i.formation.repositories.Media2Repository"
+		scope="prototype">
+		<property name="entityManager" ref="entityManager"></property>
+	</bean>
+	<bean id="authorRepository" class="com.m2i.formation.repositories.AuthorRepository"
+		scope="prototype">
+		<property name="entityManager" ref="entityManager"></property>
+	</bean>
+
+	<bean id="mainService" class="com.m2i.formation.services.MainService" scope="prototype">
+		<property name="mediaRepository" ref="mediaRepository"></property>
+		<property name="authorRepository" ref="authorRepository"></property>
+	</bean>
+	
+	<bean id="entityManagerFactory" class="javax.persistence.Persistence" factory-method="createEntityManagerFactory">
+		<constructor-arg value="FormationJPA2"/>
+	</bean>
+	
+	<bean id="entityManager" factory-bean="entityManagerFactory" factory-method="createEntityManager"/>
+</beans>

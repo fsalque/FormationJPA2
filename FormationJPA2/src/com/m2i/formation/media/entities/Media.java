@@ -42,12 +42,12 @@ public class Media implements Serializable, IEntity {
 	private String title;
 
 	//bi-directional many-to-one association to Publisher
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="id_Publisher")
 	private Publisher publisher;
 
 	//bi-directional many-to-many association to Author
-	@ManyToMany(mappedBy="medias")
+	@ManyToMany(mappedBy="medias",cascade=CascadeType.ALL)
 	private List<Author> authors;
 
 	//bi-directional many-to-many association to Card
